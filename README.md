@@ -20,7 +20,7 @@ version is 4.3.11.
   2. Clone the repository:
 
      ```console
-     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+     git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.config/zprezto"
      ```
 
   3. Create a new Zsh configuration by copying the Zsh configuration files
@@ -28,8 +28,8 @@ version is 4.3.11.
 
      ```sh
      setopt EXTENDED_GLOB
-     for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-       ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+     for rcfile in "$HOME"/.config/zprezto/runcoms/^README.md(.N); do
+       ln -s "$rcfile" "$HOME/.${rcfile:t}"
      done
      ```
 

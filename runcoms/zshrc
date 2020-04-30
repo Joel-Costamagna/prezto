@@ -19,3 +19,8 @@ function add_yubikey() {
 	gpgconf --launch gpg-agent
 }
 add_yubikey
+alias ipa='ip --brief --color address'
+alias vi="nvim"
+alias git="hub"
+alias r="ranger"
+alias listpackage="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"

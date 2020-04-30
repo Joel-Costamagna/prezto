@@ -10,4 +10,17 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
 
-alias ipa="ip --color --brief address"
+export DEFAULT_USER="bbanakaffalatta"
+export EDITOR='nvim'
+export VISUAL='nvim'
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export WECHALLUSER='bbanakaffalatta'
+export WECHALLTOKEN='6A704-51FE6-63AA7-531AC-B1B83-65B7B'
+export PATH="$PATH:/usr/local/go/bin"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$(go env GOPATH)/bin"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+

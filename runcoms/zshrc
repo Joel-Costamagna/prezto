@@ -18,9 +18,10 @@ function add_yubikey() {
     gpg-connect-agent updatestartuptty /bye
 	gpgconf --launch gpg-agent
 }
-add_yubikey
 alias ipa='ip --brief --color address'
-alias vi="nvim"
-alias git="hub"
 alias r="ranger"
-alias listpackage="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias rm='trash-put'
+source /home/jcostamagna/.config/broot/launcher/bash/br
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

@@ -18,10 +18,39 @@ function add_yubikey() {
     gpg-connect-agent updatestartuptty /bye
 	gpgconf --launch gpg-agent
 }
+function fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+}
+zle -N fh
+bindkey '^r' fh
+
+function aptinstall(){
+        print -z sudo apt install $(apt list --verbose 2>/dev/null | \
+        tail --lines +2 | \
+        # place the description on the same line
+        # separate the description and the other information
+        # with a ^
+        sd $'\n {2}([^ ])' $'^$1' | \
+        # place the package information and the package description
+        # in a table with two columns
+        column -t -s'^' | \
+        # select packages with fzf
+        fzf --multi | \
+        # remove everything except the package name
+        cut --delimiter '/' --fields 1 | \
+        # escape selected packages (to avoid unwanted code execution)
+        # and remove line breaks
+        xargs --max-args 1 --no-run-if-empty printf "%q ")
+}
+
+
 alias ipa='ip --brief --color address'
 alias r="ranger"
 alias rm='trash-put'
+alias scp=rsync
+alias _upgrade='sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt autoremove && sudo apt autoclean'
 source /home/jcostamagna/.config/broot/launcher/bash/br
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+export NNN_FIFO=/tmp/nnn.fifo
